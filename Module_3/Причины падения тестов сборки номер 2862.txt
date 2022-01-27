@@ -1,0 +1,19 @@
+Семь ошибок (см. рис. Allure_2862):
+1. Не смогли открыть навигационную ссылку на группе шагов "Posting Sales order" из-за незавершения действий на предыдущей группе шагов "Posting Purchase invoice" (ошибка при проверки "data population").
+2. Ошибка на группе шагов "Check the message output when the order is already closed by the purchase order" на шаге проверки количества строк в ТЧ.
+("{ExternalDataProcessor.РаботаСТаблицами.Form.Форма.Form(282)}: Expected number of lines in <BasisesTree> table is равно 0 and actual number is <2>.)
+3. Ошибка на группе шагов "Create Retail return receipt based on RetailSalesReceipt01541491", у предыдущего документа возникла ошибка ("Wrong linked row...") и он не успел закрыться, соответственно форма списка оказалась не в фокусе.
+(Form table named <List> is not found) 
+4. Ошибка на группе шагов "Post Retail return receipt and check movements in the register Retail sales" на условии что "ResultTable" содержит строки по шаблону (различие в наименовании "Company");
+(Line No.6 is not found in Spreadsheet document on the form)
+5. Ошибка на группе шагов "Create SI" на шаге "And I click "Sales invoice" button" из-за ошибки проведения документа "Sales order" на предыдущем шаге (в фокусе окно сообщение об ошибке). 
+("The button/command with <Sales invoice> header is not found.)
+6. Ошибка на группе шагов " Select items from basis documents" на шаге перехода к строке (значение 7000 не найдено):
+"Unable to move to the required line in <BasisesTree> table. 
+		| 'Currency' | 'Price'  | 'Quantity' | 'Row presentation' | 'Unit' | 'Use' | 
+		| 'TRY'      | '350,00' | '7,000'    | 'Shirt (36/Red)'   | 'pcs'  | 'No'  | 
+Value <7,000 > from <Quantity > column is not found.
+7. В документе отсутствует строка для перехода в соответствии с переданными параметрами (аналогичная ошибке 6):
+"Unable to move to the required line in <BasisesTree> table. 
+		| 'Currency' | 'Price'  | 'Quantity' | 'Row presentation' | 'Unit' | 
+		| 'TRY'      | '100,00' | '10,000'   | 'Dress (S/Yellow)' | 'pcs'  | 
